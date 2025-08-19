@@ -21,7 +21,7 @@ settings = {'figure.figsize':(14,4),
 plt.rcParams.update(settings)
 
 #### WHERE TO SAVE DATA
-output = os.path.abspath("C:/Users/jpark/vscode/NowCast_Data_Analysis_scripts/output_mo_qt")
+output_data_mo = r"C:/Users/jpark/vscode/DutchEconomyTen_Charts/data/01_get_data/mo_data//"
 
 print("yfinance data")
 
@@ -58,4 +58,4 @@ df_merged.tail()
 aex_monthly = df_merged.resample('1MS').mean()
 aex_monthly = aex_monthly.loc["1995-01-01":,]
 
-aex_monthly.to_csv(output + "/aex_stocks_bonds_mo.csv")
+aex_monthly.to_csv(output_data_mo + "aex_stocks_bonds_mo.csv")

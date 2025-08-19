@@ -23,12 +23,12 @@ settings = {'figure.figsize':(14,4),
 plt.rcParams.update(settings)
 
 #### WHERE TO SAVE DATA
-output = os.path.abspath("C:/Users/jpark/vscode/NowCast_Data_Analysis_scripts/output_mo_qt")
+output_data_monthly = r"C:/Users/jpark/vscode/DutchEconomyTen_Charts/data/01_get_data/mo_data/"
+output_data_quarterly = r"C:/Users/jpark/vscode/DutchEconomyTen_Charts/data/01_get_data/qt_data/"
 
 start_date = "1983-01-01"
 
 data = eurostat.get_data_df('une_rt_m')   ###############
-data.to_csv("tmp.csv")
 
 data = data[data['freq'] == 'M']
 data = data[data['s_adj'] == 'SA']
@@ -53,7 +53,7 @@ data1.index = pd.date_range(start = start_date,  periods = data1.shape[0], freq 
 data1 = data1.loc[:, ['NL','DE','FR','IT','ES','BE','JP','US']]
 data1.columns = ['Netherlands_unemply_F', 'Netherlands_unemply_M', 'Germany_unemply_F', 'Germany_unemply_M', 'France_unemply_F', 'France_unemply_M','Italy_unemply_F','Italy_unemply_M','Spain_unemply_F', 'Spain_unemply_M','Belgium_unemply_F','Belgium_unemply_M','Japan_unemply_F','Japan_unemply_M', 'United States_unemply_F','United States_unemply_M']
 
-data1.to_csv(output + "/unemployment_mo.csv")
+data1.to_csv(output_data_monthly + "unemployment_mo.csv")
 
 dt2 = data.iloc[:, 5:]
 dt2 = dt2.T
@@ -66,7 +66,7 @@ data1.index = pd.date_range(start = start_date,  periods = data1.shape[0], freq 
 data1 = data1.loc[:, ['NL','DE','FR','IT','ES','BE','JP','US']]
 data1.columns = ['Netherlands_unemply_F', 'Netherlands_unemply_M', 'Germany_unemply_F', 'Germany_unemply_M', 'France_unemply_F', 'France_unemply_M','Italy_unemply_F','Italy_unemply_M','Spain_unemply_F', 'Spain_unemply_M','Belgium_unemply_F','Belgium_unemply_M','Japan_unemply_F','Japan_unemply_M', 'United States_unemply_F','United States_unemply_M']
 
-data1.to_csv(output + "/unemployment_mo.csv")
+data1.to_csv(output_data_monthly + "unemployment_mo.csv")
 
 ##################
 ### European GDP
@@ -93,7 +93,7 @@ data1.index = pd.date_range(start = start_date,  periods = data1.shape[0], freq 
 data1 = data1.loc[:, ['NL','DE','FR','IT','ES','BE','EE']]
 data1.columns = ['Netherlands_GDP', 'Germany_GDP', 'France_GDP', 'Italy_GDP', 'Spain_GDP', 'Belgium_GDP','Europe_GDP']
 
-data1.to_csv(output + "/europe_gdp_qt.csv")
+data1.to_csv(output_data_quarterly + "europe_gdp_qt.csv")
 
 ##################
 # inflation
@@ -117,7 +117,7 @@ dt2.index = pd.date_range(start = start_date,  periods = dt2.shape[0], freq = "M
 
 dt2 = dt2.rename_axis(None, axis=1)
 
-dt2.to_csv(output + "/europe_inflation_mo.csv")
+dt2.to_csv(output_data_monthly + "europe_inflation_mo.csv")
 
 ##################
 # Sentiment
@@ -157,4 +157,4 @@ dt2.index = pd.date_range(start = start_date,  periods = dt2.shape[0], freq = "M
 
 dt2 = dt2.rename_axis(None, axis=1)
 
-dt2.to_csv(output + "/europe_Confidence_mo.csv")
+dt2.to_csv(output_data_monthly + "europe_Confidence_mo.csv")

@@ -1,5 +1,4 @@
 #%pip install wbgapi
-
 import pandas as pd
 import requests
 import wbgapi as wb
@@ -24,7 +23,7 @@ settings = {'figure.figsize':(14,4),
 plt.rcParams.update(settings)
 
 #### WHERE TO SAVE DATA
-output = os.path.abspath("C:/Users/jpark/vscode/NowCast_Data_Analysis_scripts/output_mo_qt")
+output_data_monthly = r"C:/Users/jpark/vscode/DutchEconomyTen_Charts/data/01_get_data/mo_data/"
 
 print("world bank data")
 
@@ -52,4 +51,4 @@ data_original[cols1] = data_original[cols1].apply(pd.to_numeric,errors='coerce')
 # barley sorghum bad data
 data_original.drop(columns=["Barley","Sorghum"],inplace=True)
 
-data_original.to_csv(output+"/commodityprices_mo.csv")
+data_original.to_csv(output_data_monthly +"commodityprices_mo.csv")
