@@ -51,4 +51,4 @@ data_original[cols1] = data_original[cols1].apply(pd.to_numeric,errors='coerce')
 # barley sorghum bad data
 data_original.drop(columns=["Barley","Sorghum"],inplace=True)
 
-data_original.to_csv(output_data_monthly +"commodityprices_mo.csv")
+data_original.to_csv(output_data_monthly +"worldbank_commodityprices_mo.csv")
