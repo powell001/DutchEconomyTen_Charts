@@ -177,7 +177,6 @@ def consumerConsumption_value():
     further_selection = ['Domestic_consumption_by_households', 'Consumption_of_goods_by_households', 'Durable_consumer_goods', 'Consumption_of_services_by_households']
     valueChanges = valueChanges[further_selection]
 
-
     fig, ax = plt.subplots(2, 1, layout='constrained', figsize=(12, 8.75))
 
     # string to dates, helps with plotting

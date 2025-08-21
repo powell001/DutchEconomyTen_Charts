@@ -2,8 +2,8 @@ import pandas as pd
 import matplotlib.pyplot as plt
 import numpy as np
 
-output_figures = r"C:/Users/jpark/vscode/DutchEconomyTen_Charts/output/figures//"
-output_data = r"C:/Users/jpark/vscode/DutchEconomyTen_Charts/code/exports/data//"
+output_figures = r"C:\Users\jpark\vscode\DutchEconomyTen_Charts\code\exports\\"
+output_data = r"C:\Users\jpark\vscode\DutchEconomyTen_Charts\code\exports\\"
 
 
 def plotExport():
@@ -14,9 +14,7 @@ def plotExport():
                  'ExportsOfGoodsFromProduction_173_additional', 'ReExports_174_additional', 'OtherExportsOfServices_177_additional',
 
                  'ExportsOfGoods_16_seasonCorrected_expenditure', 'ExportsOfServices_17_seasonCorrected_expenditure',
-                 'TotalExportsOfGoodsAndServices_155_seasonCorrected_additional', 'ExportsOfGoodsFromProduction_173_seasonCorrected_additional',
-                 'ReExports_174_seasonCorrected_additional'
-                 
+                 'TotalExportsOfGoodsAndServices_155_seasonCorrected_additional'
                  ]
     
 
@@ -59,4 +57,5 @@ ax[1].grid()
 ax[1].set_title("Exports Seasonally Adjusted", loc='left', fontsize=12, fontweight=0, color='black')
 ax[1].legend(ExportsSeason.columns, loc='upper left', fontsize=8, ncol=1)
 
+plt.savefig(output_figures + "Exports.png", dpi=300, bbox_inches='tight')
 plt.show()

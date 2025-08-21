@@ -3,8 +3,8 @@ import matplotlib.pyplot as plt
 import numpy as np
 
 
-output_figures = r"C:/Users/jpark/vscode/DutchEconomyTen_Charts/output/figures//"
-output_data = r"C:/Users/jpark/vscode/DutchEconomyTen_Charts/code/producerConfidence/data//"
+output_figures = r"C:/Users/jpark/vscode/DutchEconomyTen_Charts/code/producerConfidence//"
+output_data = r"C:/Users/jpark/vscode/DutchEconomyTen_Charts/code/producerConfidence//"
 
 def collectData(verbose):
 

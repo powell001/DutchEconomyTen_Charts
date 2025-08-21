@@ -11,7 +11,6 @@ warnings.filterwarnings("ignore")
 todayDate = datetime.today().strftime('%Y_%m_%d')
 pd.set_option('display.max_columns', 40)
 
-
 #  https://opendata.cbs.nl/#/CBS/en/dataset/85881ENG/table
 
 
@@ -31,7 +30,7 @@ settings = {'figure.figsize':(14,4),
 plt.rcParams.update(settings)
 
 ###################################
-#
+# Want consumer disposable income data
 ###################################
 
 #### Where to save data and figures
@@ -58,13 +57,10 @@ def macro_data_cbs(identifier, verbose = False):
         print("Columns unprocessed: ", len(columns_unprocessed))
         print(data.Periods)
 
-    # subsetting data rows data = data[data["TypeOfData"] == 'Prices of 2021 seasonally adjusted']
-
-    # dont want quarters
+    # want quarters
     data = data[data['Periods'].str.contains('quarter')]
-    data.to_csv(output_data_qt + "unprocessed_qt_data.csv")
-    
 
+    # drop unnecessary columns
     data.drop(columns = ['ID','Periods'], inplace = True)
     
     data.index = pd.date_range(start = start_date, periods = data.shape[0], freq = "Q").to_period('Q')
@@ -76,3 +72,35 @@ def macro_data_cbs(identifier, verbose = False):
     return data
 
 nationalAccounts = NLD_basic_macro_data = macro_data_cbs(identifier = '85881ENG', verbose = False)
+
+
+#######################
+# Real Disposable Income
+#######################
+
+realDisposableIncome = nationalAccounts[['RealDisposableIncome_37']]
+
+consumptionIncome = nationalAccounts[['MixedIncome_35', 'GrossDisposableIncome_36','AdjustedDisposableIncome_38', 'FinalConsumptionExpenditure_39']]
+consumptionIncome_percent =  consumptionIncome.pct_change(4) * 100
+consumptionIncome_percent.columns = [col + "_pct_change" for col in consumptionIncome_percent.columns]
+
+
+fig, ax = plt.subplots(2, 1, layout='constrained', figsize=(12, 8.75))
+
+# string to dates, helps with plotting
+realDisposableIncome = realDisposableIncome.loc['2000-10-01':,:]
+consumptionIncome_percent = consumptionIncome_percent.loc['2000-10-01':,:]
+x = np.asarray(consumptionIncome_percent.index, dtype='datetime64[s]')
+
+
+ax[0].plot(x, realDisposableIncome, linewidth=1)
+ax[0].set_title("Real Disposable Income Percent", loc='left', fontsize=12, fontweight=0, color='black')
+ax[0].legend(realDisposableIncome.columns, loc='upper right', fontsize=8, ncol=1)
+
+ax[1].plot(x, consumptionIncome_percent, linewidth=1)
+ax[1].set_title("Disposable Income Percent", loc='left', fontsize=12, fontweight=0, color='black')
+ax[1].legend(consumptionIncome_percent.columns, loc='upper right', fontsize=8, ncol=1)
+
+
+plt.savefig(output_figures + "realDisposableIncome.png", dpi=300, bbox_inches='tight')
+plt.show()

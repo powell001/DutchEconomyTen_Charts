@@ -2,8 +2,8 @@ import pandas as pd
 import matplotlib.pyplot as plt
 import numpy as np
 
-output_figures = r"C:/Users/jpark/vscode/DutchEconomyTen_Charts/output/figures//"
-output_data = r"C:/Users/jpark/vscode/DutchEconomyTen_Charts/code/imports/data//"
+output_figures = r"C:/Users/jpark/vscode/DutchEconomyTen_Charts/code/imports//"
+output_data    = r"C:/Users/jpark/vscode/DutchEconomyTen_Charts/code/imports//"
 
 
 def plotImport():
@@ -47,4 +47,5 @@ ax[1].plot(x, importsSeason, linewidth=2)
 ax[1].grid()
 ax[1].set_title("Imports Seasonally Adjusted", loc='left', fontsize=12, fontweight=0, color='black')
 
+plt.savefig(output_figures + "Imports.png", dpi=300, bbox_inches='tight')
 plt.show()
