@@ -46,8 +46,8 @@ def macro_data_cbs(identifier, verbose = False):
         info = cbsodata.get_info(identifier)
         print(info)
         tables = pd.DataFrame(cbsodata.get_table_list())
-        tables.to_csv(output_data_mo + "cbs_table_list.csv")
-        data.to_csv(output_data_mo + "unprocessed_mo_data.csv")
+        #tables.to_csv(output_data_mo + "cbs_table_list.csv")
+        #data.to_csv(output_data_mo + "unprocessed_mo_data.csv")
         columns_unprocessed = data.columns
         print("Columns unprocessed: ", len(columns_unprocessed))
         print(data.Periods)
