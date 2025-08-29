@@ -112,7 +112,6 @@ def macro_data_cbs(identifier, verbose = False):
     # save locally
     data_all.to_csv(output_data_main_data_file + "employment_males_mo.csv")
 
-    
 
     #############################################
     #############################################
